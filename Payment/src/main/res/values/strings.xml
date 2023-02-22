@@ -1,0 +1,4 @@
+<resources>
+    <string name="text_payment_cancel">Cancel</string>
+    <string name="default_text_pay_using">Pay Using</string>
+</resources>
