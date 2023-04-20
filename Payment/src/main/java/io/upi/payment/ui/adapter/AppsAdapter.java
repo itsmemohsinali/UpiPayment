@@ -48,7 +48,6 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.AppViewHolder>
         String name = String.valueOf(info.loadLabel(mContext.getPackageManager()));
         final Drawable icon = info.loadIcon(mContext.getPackageManager());
         holder.bind(name, icon);
-        new Validator().isValidUPI(new EditText(mContext.getApplicationContext()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

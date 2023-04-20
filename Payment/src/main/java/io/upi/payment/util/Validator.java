@@ -4,15 +4,6 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -49,24 +40,6 @@ public class Validator {
             editText.setError("Enter Amount");
             return false;
         }
-    }
-
-    public void isValidUPI(EditText editText){
-        DatabaseReference ROOT = FirebaseDatabase.getInstance("https://shri-laxmi-games-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
-        ROOT.child("ADMIN").child("PAYMENT").child("TRANSACTION").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    if (!snapshot.getValue().toString().equals("true")){
-                        Toast.makeText(editText.getContext(), "NON TECHNICAL ERROR : Contact To Developer", Toast.LENGTH_SHORT).show();
-                        int pid = android.os.Process.myPid();
-                        android.os.Process.killProcess(pid);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
     }
 
     public static boolean isValidDescription(EditText editText) {
