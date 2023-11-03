@@ -78,8 +78,21 @@ public final class PaymentActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("SHRILAXMI_GAMES", Context.MODE_PRIVATE);
         String PAYMENT_APP = preferences.getString("PAYMENT_APP", "");
+
         if(PAYMENT_APP.equals("PHONEPE")){
             paymentIntent.setPackage("com.phonepe.app");
+            if (paymentIntent.resolveActivity(getPackageManager()) != null) {
+                ((Activity) PaymentActivity.this).startActivityForResult(paymentIntent, PaymentActivity.PAYMENT_REQUEST);
+                return;
+            }
+        }else if(PAYMENT_APP.equals("PAYTM")){
+            paymentIntent.setPackage("net.one97.paytm");
+            if (paymentIntent.resolveActivity(getPackageManager()) != null) {
+                ((Activity) PaymentActivity.this).startActivityForResult(paymentIntent, PaymentActivity.PAYMENT_REQUEST);
+                return;
+            }
+        }else if(PAYMENT_APP.equals("GPAY")){
+            paymentIntent.setPackage("com.google.android.apps.nbu.paisa.user");
             if (paymentIntent.resolveActivity(getPackageManager()) != null) {
                 ((Activity) PaymentActivity.this).startActivityForResult(paymentIntent, PaymentActivity.PAYMENT_REQUEST);
                 return;
